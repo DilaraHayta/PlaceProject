@@ -6,5 +6,9 @@
     <b>Contact Mail: </b><%= place.contact_mail %>
     <b>Established: </b><%= place.established_at %>
     <b>Description: </b><%= place.description %>
-    <br><br><br><br>
+    <b>Category: </b><%= place.category.name unless place.category.nil? %>
+
+
+    <br><br>
+
 <% end %>
