@@ -23,6 +23,8 @@
     <%= p.text_area :description, placeholder: 'Description' %><br>
     <br>
 
+    <%= p.select :category_id, @categories %>
 
-    <%= p.submit 'Gonder' %>
+
+    <%= p.submit 'Send' %>
 <% end %>

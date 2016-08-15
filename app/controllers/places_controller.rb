@@ -3,6 +3,7 @@ class PlacesController < ApplicationController
 
   def new
     @place=Place.new
+    load_categories
 
   end
   def index
@@ -18,11 +19,13 @@ class PlacesController < ApplicationController
       flash[:success]='İşlem başarıyla tamamlandı!'
       redirect_to place_path(@place)
     else
+      load_categories
       render :new
     end
   end
 
   def edit
+    load_categories
 
   end
 
@@ -30,6 +33,7 @@ class PlacesController < ApplicationController
     if @place.update(place_params)
       redirect_to place_path(@place)
     else
+      load_categories
       render :edit
     end
 
@@ -42,12 +46,16 @@ class PlacesController < ApplicationController
 
   private
 
+  def load_categories
+    @categories = Category.all.collect {|c| [c.name, c.id ] }
+  end
+
   def set_place
     @place=Place.find(params[:id])
   end
 
   def place_params
-    params.require(:place).permit(:name, :adress, :phone_number, :contact_mail, :established_at, :city, :description )
+    params.require(:place).permit(:name, :adress, :phone_number, :contact_mail, :established_at, :city, :description , :category_id)
   end
 
 end
