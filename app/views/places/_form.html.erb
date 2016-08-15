@@ -1,0 +1,28 @@
+<%= form_for @place do |p| %>
+    <%= p.label :name %> <br>
+    <%= p.text_field :name, placeholder: 'Name', class: "form-control input-sm" %><br>
+    <br>
+    <%= p.label :adress %>
+    <br>
+    <%= p.text_area :adress, placeholder: 'Address' %><br>
+    <br>
+    <%= p.label :established_at %>
+    <br>
+    <%= p.date_select :established_at, placeholder: 'Established At' %><br>
+    <br>
+    <%= p.label :phone_number %> <br>
+    <%= p.text_field :phone_number, placeholder: 'Phone Number' %><br>
+    <br>
+    <%= p.label :contact_mail %> <br>
+    <%= p.text_field :contact_mail, placeholder: 'Contact Mail' %><br>
+    <br>
+    <%= p.label :city %> <br>
+    <%= p.text_field :city, placeholder: 'City' %><br>
+    <br>
+    <%= p.label :description %> <br>
+    <%= p.text_area :description, placeholder: 'Description' %><br>
+    <br>
+
+
+    <%= p.submit 'Gonder' %>
+<% end %>
