@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   root 'places#index'
   resources :places
   resources :categories, only: [:show, :index]
+  resources :votes, only: [:create, :destroy]
 
   resources :places do
        resources :comments, only: [:create, :destroy]
+       resources :votes, only: [:create, :destroy]
     end
 
 end
