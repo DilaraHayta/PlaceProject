@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   before_action :authenticate_customer!
   before_action :set_place
+  before_action :set_comment, only: [:destroy]
+  before_action :authorize_customer!, only: [:destroy]
 
   def create
     @comment = @place.comments.new(comment_params)
@@ -14,12 +16,22 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment.destroy
+       redirect_to @place, notice: "Comment was deleted"
   end
 
 
   private
+  def set_comment
+        @comment = Comment.find(params[:id])
+      end
 
-    def comment_params
+    def authorize_customer!
+        redirect_to @place, notice: "Not authorized" unless @comment.customer_id == current_customer_id
+      end
+
+
+  def comment_params
         params.require(:comment).permit(:body)
       end
 
